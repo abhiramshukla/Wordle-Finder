@@ -6,6 +6,14 @@ def input_chars(s, l = 5):
         return input_chars(s, l)
     return chars
 
+def safety_check(s_list, u_list):
+    s_set = set(s_list)
+    u_set = set(u_list)
+
+    if (s_set & u_set):
+        return True
+    return False
+
 guess_list = []
 
 try:
@@ -18,6 +26,11 @@ except FileNotFoundError:
 safe_chars =  input_chars("Enter the good alphabets (Space seperated) \n")
 
 unsafe_chars =  input_chars("Enter the bad alphabets (Space seperated) \n", 26)
+
+if(safety_check(safe_chars, unsafe_chars)):
+    print("\n Error!! Alphabet(s) are common between Good Alphabets and bad Alphabets.\n")
+    unsafe_chars.clear()
+    unsafe_chars =  input_chars("Retry!! Enter the bad alphabets (Space seperated) \n", 26)
 
 yellow_chars =  input_chars("Enter the yellow alphabets (Space seperated) (non-yellow to be marked as 0) (Example: W 0 T E 0) \n", 5)
 
